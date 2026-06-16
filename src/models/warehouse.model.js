@@ -40,4 +40,4 @@ const warehouseSchema = new mongoose.Schema(
   },
 );
 
-export default mongoose.model("Warehouse", warehouseSchema);
+export const warehouseModel =  mongoose.model("Warehouse", warehouseSchema);

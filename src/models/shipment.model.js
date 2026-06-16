@@ -90,6 +90,10 @@ const shipmentSchema = new mongoose.Schema({
     lattitude: Number,
     longitude: Number,
   },
+  currentWarehouse: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Warehouse",
+  },
   trackingHistory: [
     {
       status: String,

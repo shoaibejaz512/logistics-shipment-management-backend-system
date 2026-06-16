@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, "username is required"],
-      minLength: 3,
-      maxLength: 30,
+      minLength: [3, "username must be at least 3 characters"],
+      maxLength: [30, "username must be at most 30 characters"],
     },
     email: {
       type: String,
@@ -18,12 +18,17 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, "password is require"],
+      minLength: [8, "password must be at least 8 characters"],
+      maxLength: [100, "password must be at most 100 characters"],
       select: false,
     },
     role: {
       type: String,
       required: [true, "role is required"],
-      enum: ["USER", "DELIVERY_AGENT", "ADMIN"],
+      enum: {
+        values: ["USER", "DELIVERY_AGENT", "ADMIN"],
+        message: "role must be either USER, DELIVERY_AGENT, or ADMIN",
+      },
     },
     phone: {
       type: String,

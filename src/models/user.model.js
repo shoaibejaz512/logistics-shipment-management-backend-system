@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { required } from "zod/mini";
 
 const userSchema = new mongoose.Schema(
   {
@@ -40,6 +41,11 @@ const userSchema = new mongoose.Schema(
     passwordResetTokenExpires: Date,
 
     refreshToken: String,
+    profileImage:{
+      type:String,
+      required:[true,"profile image is required"],
+      trim:true,
+    }
   },
   { timestamps: true },
 );

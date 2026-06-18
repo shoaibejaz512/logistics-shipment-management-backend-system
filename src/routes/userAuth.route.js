@@ -1,4 +1,5 @@
 import express from "express";
+import { body } from "express-validator";
 import {
   checkAuth,
   login,
@@ -10,11 +11,12 @@ import {
 } from "../controllers/auth.controller.js";
 import { isAuthenticated } from "../middleweare/checkAuth.middleweare.js";
 import { uploadImage } from "../middleweare/upload.middleweare.js";
+import { registerSchema } from "../validators/auth.validator.js";
 
 const router = express.Router();
 
 //register route
-router.post("/signup", register);
+router.post("/signup", registerSchema, register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.post("/password-reset-token", isAuthenticated, passwordResetToken);
